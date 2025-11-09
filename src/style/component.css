@@ -1,0 +1,121 @@
+.header-wraper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 340px;
+}
+
+.header-burger-cont {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-information {
+  color: #333;
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.83;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding-bottom: 20px;
+}
+.caterogies-list {
+  display: flex;
+  gap: 10px;
+  max-width: 380px;
+  flex-wrap: wrap;
+}
+
+.categori {
+  border-radius: 6px;
+  border: 2px solid #f8f8f8;
+  padding: 5px 15px;
+  cursor: pointer;
+  color: #ababab;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.cards-of-joke-list {
+  display: flex;
+  gap: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.joke-card {
+  max-width: 340px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: #f8f8f8;
+  position: relative;
+}
+
+.icon-like {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.icon-message {
+  position: absolute;
+
+  left: 20px;
+  top: 47px;
+}
+
+.icon-link {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  margin-left: 5px;
+}
+
+.id-wraper {
+  display: flex;
+  margin: 47px 20px 5px 80px;
+
+  color: #ababab;
+  font-family: Roboto;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.card-text {
+  display: block;
+  color: #333;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42;
+  margin-left: 80px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.last-update-info-text {
+  color: #ababab;
+  font-family: Roboto;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4;
+  margin-left: 80px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
