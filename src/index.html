@@ -4,13 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./style/component.css" />
+    <link rel="stylesheet" href="./style/base.css" />
   </head>
   <body>
-    <header>
-      <div class="header-cont"></div>
+    <header class="container header-wraper">
+      <p>MSI 2020</p>
+      <div class="header-burger-cont">
+        <img src="./img//burgerOpen.svg" alt="Burger Menu" />
+        <p>Favourite</p>
+      </div>
     </header>
-    <main></main>
+    <main>
+      <section class="container">
+        <h2>Hey!</h2>
+        <p class="hero-information">Let’s try to find a joke for you:</p>
+      </section>
+
+      <section class="container">
+        <form class="form-wrapper" action="">
+          <label for="">
+            <input type="radio" name="filter" value="random" checked /> Random
+          </label>
+
+          <label for="">
+            <input type="radio" name="filter" value="caterogies" /> From
+            caterogies
+          </label>
+          <section class="container"><ul class="caterogies-list"></ul></section>
+          <label for="">
+            <input type="radio" name="filter" value="search" /> Search
+          </label>
+        </form>
+        <button class="get-joke-btn" type="button">Get a joke</button>
+      </section>
+
+      <section class="container"><ul class="cards-of-joke-list"></ul></section>
+    </main>
     <footer></footer>
     <script type="module" src="./app/main.js"></script>
+    <script type="module" src="./app/api.js"></script>
+    <script type="module" src="./app/utils.js"></script>
   </body>
 </html>
