@@ -31,11 +31,12 @@ textarea {
   outline: none;
 }
 
-.container {
+.fix-size-container {
   max-width: 380px;
   padding-right: 20px;
   padding-left: 20px;
 }
+
 .header-wraper {
   padding-top: 20px;
 }

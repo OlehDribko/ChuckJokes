@@ -28,10 +28,12 @@
           </label>
 
           <label for="">
-            <input type="radio" name="filter" value="caterogies" /> From
+            <input type="radio" name="filter" value="categories" /> From
             caterogies
           </label>
-          <section class="container"><ul class="caterogies-list"></ul></section>
+          <div class="container">
+            <ul class="categories-list"></ul>
+          </div>
           <label for="">
             <input type="radio" name="filter" value="search" /> Search
           </label>
@@ -42,6 +44,8 @@
       <section class="container"><ul class="cards-of-joke-list"></ul></section>
     </main>
     <footer></footer>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+
     <script type="module" src="./app/main.js"></script>
     <script type="module" src="./app/api.js"></script>
     <script type="module" src="./app/utils.js"></script>

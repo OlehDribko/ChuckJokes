@@ -1,38 +1,25 @@
-import jokeCardRender from "./components/createCard.js";
+import renderjokeCard from "./components/renderjokeCard.js";
 import categoriesListRender from "./components/createListCategories.js";
 
-const getJokeButton = document.querySelector(".get-joke-btn");
+export const URL = "https://api.chucknorris.io/jokes";
 
-const URL = "https://api.chucknorris.io/jokes";
-
-function getRandomJoke() {
-  const xml = new XMLHttpRequest();
-  xml.open("GET", `${URL}/random`);
-  xml.send();
-
-  xml.addEventListener("readystatechange", () => {
-    if (xml.readyState === 4) {
-      const data = JSON.parse(xml.response);
-
-      const { id, value, updated_at, categories } = data;
-      jokeCardRender(id, value, updated_at, categories);
-    }
-  });
+export async function handleJokeRequest(url) {
+  try {
+    const response = await fetch(url);
+    const data = response.json();
+    return data;
+  } catch (error) {}
 }
-getRandomJoke();
 
-function getCategories() {
-  const xml = new XMLHttpRequest();
-  xml.open("GET", `${URL}/categories`);
-  xml.send();
+async function getCategorysJoke() {
+  try {
+    const response = await fetch(`${URL}/categories`);
+    const data = await response.json();
 
-  xml.addEventListener("readystatechange", () => {
-    if (xml.readyState === 4) {
-      const data = JSON.parse(xml.response);
-      categoriesListRender(data);
-    }
-  });
+    return data;
+  } catch (error) {
+    throw error;
+  }
 }
-getCategories();
 
-
+categoriesListRender(await getCategorysJoke());

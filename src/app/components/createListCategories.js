@@ -1,10 +1,12 @@
-export default function categoriesListRender(categoriesList) {
-  const categoriList = document.querySelector(".caterogies-list");
+import { createDomElment } from "../utils.js";
 
-  for (let i = 0; i < categoriesList.length; i++) {
-    const li = document.createElement("li");
-    li.classList.add("categori");
-    li.textContent = categoriesList[i];
-    categoriList.append(li);
-  }
+export default function categoriesListRender(categorysList) {
+  const categoryList = document.querySelector(".categories-list");
+
+  categorysList.forEach((category) => {
+    const categoryItem = createDomElment("li", "categori");
+    categoryItem.textContent = category;
+
+    categoryList.append(categoryItem);
+  });
 }

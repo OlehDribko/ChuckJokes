@@ -1,0 +1,15 @@
+# development environment
+.idea
+
+# dependencies
+node_modules
+package-lock.json
+
+# production
+build
+lib
+dist
+
+# misc
+.DS_Store
+.env
