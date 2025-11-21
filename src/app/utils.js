@@ -1,4 +1,4 @@
-import { URL } from "./api.js";
+import { URL } from "./main.js";
 
 function getTimeHoursAgo(lastDate) {
   const date = dayjs(lastDate);

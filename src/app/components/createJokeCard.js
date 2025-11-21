@@ -1,40 +1,31 @@
 import { getTimeHoursAgo, createDomElment } from "../utils.js";
 
-export function createJokeCard(data) {
-  const { id, value, updated_at, created_at } = data;
+export function jokeCard(data) {
+  const { id, value, updated_at, categories } = data;
 
   const dateChange = getTimeHoursAgo(updated_at);
-
   const JokeCard = createDomElment("li", "joke-card");
-
   const icon = createDomElment("img", "icon-message");
-  icon.src = "./img/message.svg";
-
+  const div = createDomElment("div", "id-wraper");
   const iconLink = createDomElment("img", "icon-link");
-  iconLink.src = "./img/link.svg";
-
   const iconLike = createDomElment("img", "icon-like");
+  const idContent = document.createElement("p");
+  const jokeValue = createDomElment("p", "card-text");
+  const updateInfo = createDomElment("p", "last-update-info-text");
+  const categoryEl = createDomElment("p", "categori-visabili");
 
+  iconLink.src = "./img/link.svg";
+  icon.src = "./img/message.svg";
   iconLike.src = "./img/like.svg";
 
-  const div = createDomElment("div", "id-wraper");
-
-  const idContent = document.createElement("p");
   idContent.textContent = `ID: ${id} `;
+  jokeValue.textContent = value;
+  updateInfo.textContent = `Last update: ${dateChange} hours ago`;
+  categoryEl.textContent = `${categories[0] ?? ""}`;
 
   div.append(idContent, iconLink);
 
-  const jokeValue = createDomElment("p", "card-text");
-  console.log(data);
-  jokeValue.textContent = value;
-
-  const updateInfo = createDomElment("p", "last-update-info-text");
-  updateInfo.textContent = `Last update: ${dateChange} hours ago`;
-
-  const categoryEl = createDomElment("p", "categori-visabili");
-
-  categoryEl.textContent = `${created_at ?? ""}`;
-
   JokeCard.append(icon, iconLike, div, jokeValue, updateInfo, categoryEl);
+
   return JokeCard;
 }
