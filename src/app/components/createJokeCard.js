@@ -29,3 +29,20 @@ export function jokeCard(data) {
 
   return JokeCard;
 }
+
+// const [value, setValue] = useState(10);
+
+// setValue(22);
+
+const myUseState = function fn(value, callback) {
+  let state = value;
+
+  function getState() {
+    return state;
+  }
+  function setState(newValue) {
+    state = newValue;
+  }
+
+  return [getState, setState];
+};
