@@ -5,6 +5,7 @@ export default function categoriesListRender(categorysList) {
 
   categorysList.forEach((category) => {
     const categoryItem = createDomElment("li", "categori");
+
     categoryItem.textContent = category;
 
     categoryList.append(categoryItem);

@@ -12,17 +12,4 @@ function createDomElment(elementTag, className) {
   return element;
 }
 
-export function getUrlByChoice(choice, categories, query) {
-  switch (choice) {
-    case "categories":
-      return `${URL}/random?category=${categories}`;
-
-    case "search":
-      return `${URL}/search?query=${query}`;
-
-    default:
-      return `${URL}/random`;
-  }
-}
-
 export { getTimeHoursAgo, createDomElment };
