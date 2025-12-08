@@ -1,4 +1,9 @@
-import { getTimeHoursAgo, createDomElment } from "../utils.js";
+import {
+  getTimeHoursAgo,
+  createDomElment,
+  isFavorite,
+  toggleFavorite,
+} from "../utils.js";
 
 export function jokeCard(data) {
   const { id, value, updated_at, categories } = data;
@@ -12,7 +17,7 @@ export function jokeCard(data) {
   const idContent = document.createElement("p");
   const jokeValue = createDomElment("p", "card-text");
   const updateInfo = createDomElment("p", "last-update-info-text");
-  const categoryEl = createDomElment("p", "categori-visabili");
+  const categoryEl = createDomElment("p", "textContent");
 
   iconLink.src = "./img/link.svg";
   icon.src = "./img/message.svg";
@@ -25,7 +30,25 @@ export function jokeCard(data) {
 
   div.append(idContent, iconLink);
 
-  JokeCard.append(icon, iconLike, div, jokeValue, updateInfo, categoryEl);
+  JokeCard.append(icon, iconLike, div, jokeValue, updateInfo);
+  if (categories && categories.length > 0) {
+    categoryEl.textContent = categories[0];
+    categoryEl.classList.add("category-badge");
+    JokeCard.append(categoryEl);
+  }
+
+  if (isFavorite(id)) {
+    iconLike.classList.add("icon-like-active");
+    iconLike.src = "./img/fullLike.svg";
+  }
+
+  iconLike.addEventListener("click", (event) => {
+    const nowFavorite = toggleFavorite(data);
+
+    iconLike.classList.toggle("icon-like--active", nowFavorite);
+
+    iconLike.src = nowFavorite ? "./img/fullLike.svg" : "./img/like.svg";
+  });
 
   return JokeCard;
 }

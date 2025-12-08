@@ -1,77 +1,59 @@
-import { handleJokeRequest } from "./api.js";
-import renderJokeCard from "./components/renderjokeCard.js";
-import categoriesListRender from "./components/createListCategories.js";
-import { useCategory, useSearch } from "./state.js";
+import { categoryAPI } from "./api/categoryApi.js";
+import { jokesAPI } from "./api/jokeApi.js";
+import categoriesListRender from "./components/categoriesListRender.js";
+import renderJokeCards from "./components/renderJokeCards.js";
+import { getFavorites, getSelectedRadio } from "./utils.js";
+
+//
+const favoritesOverlay = document.querySelector(".favorites-overlay");
+const favoritesList = document.querySelector(".favorites-list");
+const openFavoritesBtn = document.querySelector(".open-favorites");
+const closeFavoritesBtn = document.querySelector(".close-favorites");
+//
+
+const listOfJoke = document.querySelector(".cards-of-joke-list");
 
 export const URL = "https://api.chucknorris.io/jokes";
 
-const getJokeButton = document.querySelector(".get-joke-btn");
-const getCategory = document.querySelector(".categories-list");
-const form = document.querySelector(".form-wrapper");
-const searchBox = document.querySelector(".search-box");
+const jokeButton = document.querySelector(".get-joke-btn");
+const favoriteWraper = document.querySelector(".header-burger-cont");
+const jokesContainer = document.querySelector(".jokeCards");
 
-const [CATEGORY, setCategory] = useCategory();
-const [SEARCH, setSearch] = useSearch();
-
-function getSelectedRadio() {
-  return document.querySelector("input[name=filter]:checked").value;
-}
-
-function getUrlByChoice(choice) {
-  const category = CATEGORY();
-  const query = SEARCH();
-  switch (choice) {
-    case "categories":
-      return `${URL}/random?category=${category}`;
-
-    case "search":
-      return `${URL}/search?query=${query}`;
-    default:
-      return `${URL}/random`;
-  }
-}
-
-form.addEventListener("change", () => {
+jokeButton.addEventListener("click", async (e) => {
+  const choice = getSelectedRadio();
   const searchInput = document.querySelector(".search-input");
+  const selectedCategory = document.querySelector(
+    "input[name=category]:checked"
+  )?.value;
 
-  const choice = getSelectedRadio();
+  const query = searchInput.value.trim();
 
-  if (choice === "search") {
-    searchBox.classList.remove("hidden");
-    setSearch(searchInput.value);
-  } else {
-    searchBox.classList.add("hidden");
-    searchInput.value = "";
+  const actions = {
+    random: () => jokesAPI.getRandom(),
+    categories: () => jokesAPI.getByCategory(selectedCategory),
+    search: async () => {
+      const response = await jokesAPI.getBySearchInput(query);
+
+      return response.result;
+    },
+  };
+
+  const data = await actions[choice]();
+
+  renderJokeCards(Array.isArray(data) ? data : [data], listOfJoke);
+});
+
+categoryAPI.getCategories().then((data) => {
+  categoriesListRender(data);
+});
+
+favoriteWraper.addEventListener("click", (e) => {
+  favoritesOverlay.classList.add("active");
+  if (favoritesOverlay.classList.contains("active")) {
+    const favorites = getFavorites();
+    renderJokeCards(favorites, favoritesList);
   }
+  closeFavoritesBtn.addEventListener("click", () => {
+    favoritesOverlay.classList.remove("active");
+  });
 });
-
-getJokeButton.addEventListener("click", async () => {
-  const choice = getSelectedRadio();
-
-  const URL = getUrlByChoice(choice);
-  console.log(choice);
-  const data = await handleJokeRequest(URL);
-
-  renderJokeCard(data);
-});
-
-getCategory.addEventListener("click", (event) => {
-  const item = event.target.closest("li");
-
-  if (item === null) return;
-
-  const category = item.textContent.trim();
-  setCategory(category);
-});
-
-async function getCategorysJoke() {
-  try {
-    const response = await fetch(`${URL}/categories`);
-    const data = await response.json();
-
-    return data;
-  } catch (error) {
-    throw error;
-  }
-}
-categoriesListRender(await getCategorysJoke());
