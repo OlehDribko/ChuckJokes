@@ -4,13 +4,68 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./style/style.css" />
   </head>
   <body>
-    <header>
-      <div class="header-cont"></div>
-    </header>
-    <main></main>
+    <div class="fix-size-container">
+      <header class="header-wraper">
+        <p>MSI 2020</p>
+        <div class="header-burger-cont">
+          <img src="./img//burgerOpen.svg" alt="Burger Menu" />
+          <p>Favourite</p>
+        </div>
+      </header>
+    </div>
+    <main>
+      <div class="favorites-overlay">
+        <div class="favorites-window">
+          <button class="close-favorites">
+            <img src="./img/close.svg" alt="Close Icon" />
+          </button>
+          <ul class="favorites-list"></ul>
+        </div>
+      </div>
+
+      <section class="fix-size-container">
+        <h2>Hey!</h2>
+        <p class="hero-information">Let’s try to find a joke for you:</p>
+      </section>
+
+      <section class="fix-size-container jokeCards">
+        <form class="form-wrapper" action="">
+          <label class="joke-type-label" for="">
+            <input type="radio" name="filter" value="random" checked /> Random
+          </label>
+
+          <label class="joke-type-label" for="">
+            <input type="radio" name="filter" value="categories" />
+            <div class="fix-size-container category-list-container">
+              <ul class="categories-list"></ul>
+            </div>
+            From caterogies
+          </label>
+
+          <label class="joke-type-label" for="">
+            <input type="radio" name="filter" value="search" /> Search
+          </label>
+          <div class="search-box hidden">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Free text search..."
+            />
+          </div>
+        </form>
+        <button class="get-joke-btn" type="button">Get a joke</button>
+      </section>
+
+      <section class="fix-size-container">
+        <ul class="cards-of-joke-list"></ul>
+      </section>
+    </main>
     <footer></footer>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+
     <script type="module" src="./app/main.js"></script>
   </body>
 </html>
