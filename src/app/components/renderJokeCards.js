@@ -1,11 +1,25 @@
 import { jokeCard } from "./jokeCard.js";
 
 const listOfJoke = document.querySelector(".cards-of-joke-list");
+const favoritesList = document.querySelector(".favorites-list");
 
-export default function renderJokeCards(jokes, plaseFoRender) {
-  plaseFoRender.innerHTML = "";
+function getFavoriteJokes() {
+  return localStorageAbstraction.getItems(FAVORITE_KEY) || [];
+}
+
+export function renderJokeCards(jokes) {
+  listOfJoke.innerHTML = "";
   jokes.forEach((joke) => {
     const card = jokeCard(joke);
-    plaseFoRender.append(card);
+    listOfJoke.append(card);
+  });
+}
+
+export function renderFavoriteJokes(jokes = getFavoriteJokes()) {
+  favoritesList.innerHTML = "";
+
+  jokes.forEach((joke) => {
+    const card = jokeCard(joke);
+    favoritesList.append(card);
   });
 }

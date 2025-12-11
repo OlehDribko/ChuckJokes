@@ -1,25 +1,24 @@
 import { categoryAPI } from "./api/categoryApi.js";
 import { jokesAPI } from "./api/jokeApi.js";
 import categoriesListRender from "./components/categoriesListRender.js";
-import renderJokeCards from "./components/renderJokeCards.js";
-import { getFavorites, getSelectedRadio } from "./utils.js";
+import {
+  renderJokeCards,
+  renderFavoriteJokes,
+} from "./components/renderJokeCards.js";
+import localStorageAbstraction from "./state.js";
+import { FAVORITE_KEY, getSelectedRadio } from "./utils.js";
 
-//
-const favoritesOverlay = document.querySelector(".favorites-overlay");
 const favoritesList = document.querySelector(".favorites-list");
-const openFavoritesBtn = document.querySelector(".open-favorites");
-const closeFavoritesBtn = document.querySelector(".close-favorites");
-//
 
-const listOfJoke = document.querySelector(".cards-of-joke-list");
+const favoritesOverlay = document.querySelector(".favorites-overlay");
+const closeFavoritesBtn = document.querySelector(".close-favorites");
 
 export const URL = "https://api.chucknorris.io/jokes";
 
 const jokeButton = document.querySelector(".get-joke-btn");
-const favoriteWraper = document.querySelector(".header-burger-cont");
-const jokesContainer = document.querySelector(".jokeCards");
+const favoriteWrapper = document.querySelector(".header-burger-cont");
 
-jokeButton.addEventListener("click", async (e) => {
+jokeButton.addEventListener("click", async () => {
   const choice = getSelectedRadio();
   const searchInput = document.querySelector(".search-input");
   const selectedCategory = document.querySelector(
@@ -40,18 +39,28 @@ jokeButton.addEventListener("click", async (e) => {
 
   const data = await actions[choice]();
 
-  renderJokeCards(Array.isArray(data) ? data : [data], listOfJoke);
+  renderJokeCards(Array.isArray(data) ? data : [data]);
 });
 
 categoryAPI.getCategories().then((data) => {
   categoriesListRender(data);
 });
 
-favoriteWraper.addEventListener("click", (e) => {
+favoritesList.addEventListener("click", (event) => {
+  if (!event.target.classList.contains("icon-like")) return;
+
+  const updatedFavorites = localStorageAbstraction.getItems(FAVORITE_KEY) || [];
+
+  renderFavoriteJokes(updatedFavorites);
+});
+
+favoriteWrapper.addEventListener("click", () => {
   favoritesOverlay.classList.add("active");
+
   if (favoritesOverlay.classList.contains("active")) {
-    const favorites = getFavorites();
-    renderJokeCards(favorites, favoritesList);
+    const favorites = localStorageAbstraction.getItems(FAVORITE_KEY);
+
+    renderFavoriteJokes(favorites);
   }
   closeFavoritesBtn.addEventListener("click", () => {
     favoritesOverlay.classList.remove("active");
