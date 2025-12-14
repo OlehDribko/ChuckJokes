@@ -69,6 +69,7 @@ textarea {
   justify-content: space-between;
   align-items: center;
   padding-top: 20px;
+  padding-bottom: 78px;
   width: 100%;
 }
 
@@ -93,7 +94,7 @@ main {
   font-size: 24px;
   font-weight: 500;
   line-height: 1.83;
-  margin: 8px 0 20px;
+  margin: 8px 0 40px;
 }
 
 .jokeCards {
@@ -126,7 +127,7 @@ main {
   max-width: 380px;
 }
 
-.categori {
+.category {
   border-radius: 6px;
   border: 2px solid #f8f8f8;
   padding: 5px 15px;
@@ -137,7 +138,10 @@ main {
   letter-spacing: 2px;
   text-transform: uppercase;
 }
-
+.search-input {
+  border-radius: 10px;
+  border: 2px solid #333;
+}
 /* LIST OF JOKES */
 
 .cards-of-joke-list {
@@ -152,7 +156,7 @@ main {
 .joke-card {
   max-width: 340px;
   width: 100%;
-  padding-bottom: 20px;
+
   border-radius: 20px;
   background: #f8f8f8;
   position: relative;
@@ -176,10 +180,10 @@ main {
   margin-left: 5px;
 }
 
-.id-wraper {
+.id-wrapper {
   display: flex;
   align-items: center;
-  margin: 47px 20px 5px 80px;
+  padding: 47px 20px 5px 80px;
   color: #ababab;
   font-size: 10px;
   font-weight: 500;
@@ -189,13 +193,13 @@ main {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.42;
-  margin: 0 20px 20px 80px;
+  padding: 0 20px 20px 80px;
 }
 
 .last-update-info-text {
   font-size: 10px;
   color: #ababab;
-  margin: 0 20px 20px 80px;
+  padding: 0 20px 20px 80px;
 }
 
 /* BUTTON */

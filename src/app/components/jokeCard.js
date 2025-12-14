@@ -11,10 +11,12 @@ export function jokeCard(data) {
   const { id, value, updated_at, categories } = data;
 
   const dateChange = getTimeHoursAgo(updated_at);
+
   const jokeCardElement = createDomElement("li", "joke-card");
   const icon = createDomElement("img", "icon-message");
   const wrapper = createDomElement("div", "id-wrapper");
   const iconLink = createDomElement("img", "icon-link");
+
   const idContent = document.createElement("p");
   const jokeValue = createDomElement("p", "card-text");
   const updateInfo = createDomElement("p", "last-update-info-text");
