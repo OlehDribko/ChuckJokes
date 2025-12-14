@@ -18,6 +18,20 @@ export const URL = "https://api.chucknorris.io/jokes";
 const jokeButton = document.querySelector(".get-joke-btn");
 const favoriteWrapper = document.querySelector(".header-burger-cont");
 
+const desktopMQ = window.matchMedia("(min-width: 1280px)");
+
+if (desktopMQ.matches) {
+  const favorites = localStorageAbstraction.getItems(FAVORITE_KEY) || [];
+  renderFavoriteJokes(favorites);
+}
+
+desktopMQ.addEventListener("change", (e) => {
+  if (!e.matches) return;
+
+  const favorites = localStorageAbstraction.getItems(FAVORITE_KEY) || [];
+  renderFavoriteJokes(favorites);
+});
+
 jokeButton.addEventListener("click", async () => {
   const choice = getSelectedRadio();
   const searchInput = document.querySelector(".search-input");
