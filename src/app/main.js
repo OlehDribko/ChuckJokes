@@ -12,6 +12,7 @@ const favoritesList = document.querySelector(".favorites-list");
 
 const favoritesOverlay = document.querySelector(".favorites-overlay");
 const closeFavoritesBtn = document.querySelector(".close-favorites");
+const cardsList = document.querySelector(".cards-of-joke-list");
 
 export const URL = "https://api.chucknorris.io/jokes";
 
@@ -79,4 +80,12 @@ favoriteWrapper.addEventListener("click", () => {
   closeFavoritesBtn.addEventListener("click", () => {
     favoritesOverlay.classList.remove("active");
   });
+});
+
+cardsList.addEventListener("click", (event) => {
+  const likeBtn = event.target.closest(".icon-like");
+  if (!likeBtn) return;
+
+  const updatedFavorites = localStorageAbstraction.getItems(FAVORITE_KEY) || [];
+  renderFavoriteJokes(updatedFavorites);
 });

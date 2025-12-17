@@ -150,7 +150,6 @@ main {
 }
 
 .joke-card {
-  max-width: 340px;
   width: 100%;
   border-radius: 20px;
   background: #f8f8f8;
@@ -198,9 +197,12 @@ main {
 }
 
 .category-badge {
-  display: inline-block;
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  margin-bottom: 20px;
   padding: 4px 16px;
-  border-radius: 12px;
+  border-radius: 6px;
   background: #fff;
   color: #333;
   font-family: Roboto;
@@ -261,6 +263,7 @@ main {
 }
 
 .favorites-list > .joke-card {
+  max-width: 340px;
   border-radius: 10px;
   background: #fff;
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
@@ -294,6 +297,10 @@ main {
     height: 100vh;
     border-radius: 0;
     box-shadow: -12px 0 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .category-badge {
+    margin-right: 40px;
   }
 }
 
@@ -361,5 +368,8 @@ main {
   .header-burger-cont,
   .close-favorites {
     display: none;
+  }
+  .category-badge {
+    margin-right: 40px;
   }
 }
