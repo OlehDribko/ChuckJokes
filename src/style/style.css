@@ -1,17 +1,19 @@
-/* =========================================
-                RESET
-========================================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
 ul,
 ol,
 li {
   list-style: none;
 }
+
 a {
   text-decoration: none;
   color: inherit;
@@ -34,41 +36,19 @@ textarea {
   outline: none;
 }
 
-/* =========================================
-          FIXED LAYOUT CONTAINER
-========================================= */
-
 .fix-size-container {
-  max-width: 380px;
-  padding: 0 20px;
+  max-width: 100%;
+  min-width: 320px;
+  padding: 0 25px;
   margin: 0 auto;
 }
-
-/* Tablet */
-@media (min-width: 768px) {
-  .fix-size-container {
-    max-width: 720px;
-    padding: 0 32px;
-  }
-}
-
-/* Desktop */
-@media (min-width: 1280px) {
-  .fix-size-container {
-    max-width: 1120px;
-    padding: 0 40px;
-  }
-}
-
-/* =========================================
-                 HEADER
-========================================= */
 
 .header-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 20px;
+  padding-bottom: 78px;
   width: 100%;
 }
 
@@ -78,10 +58,6 @@ textarea {
   gap: 10px;
   cursor: pointer;
 }
-
-/* 
- MAIN CONTENT
- */
 
 main {
   padding-bottom: 40px;
@@ -93,14 +69,12 @@ main {
   font-size: 24px;
   font-weight: 500;
   line-height: 1.83;
-  margin: 8px 0 20px;
+  margin: 8px 0 40px;
 }
 
 .jokeCards {
   margin-top: 16px;
 }
-
-/* ============ FORM ============ */
 
 .form-wrapper {
   display: flex;
@@ -119,176 +93,17 @@ main {
   display: block;
 }
 
-.categories-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  max-width: 380px;
-}
-
-.categori {
-  border-radius: 6px;
-  border: 2px solid #f8f8f8;
-  padding: 5px 15px;
-  cursor: pointer;
-  color: #ababab;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-/* LIST OF JOKES */
-
-.cards-of-joke-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 40px 0;
-}
-
-/* CARD */
-
-.joke-card {
-  max-width: 340px;
-  width: 100%;
-  padding-bottom: 20px;
-  border-radius: 20px;
-  background: #f8f8f8;
-  position: relative;
-}
-
-.icon-like {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.icon-message {
-  position: absolute;
-  left: 20px;
-  top: 47px;
-}
-
-.icon-link {
-  width: 10px;
-  height: 10px;
-  margin-left: 5px;
-}
-
-.id-wraper {
-  display: flex;
-  align-items: center;
-  margin: 47px 20px 5px 80px;
-  color: #ababab;
-  font-size: 10px;
-  font-weight: 500;
-}
-
-.card-text {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.42;
-  margin: 0 20px 20px 80px;
-}
-
-.last-update-info-text {
-  font-size: 10px;
-  color: #ababab;
-  margin: 0 20px 20px 80px;
-}
-
-/* BUTTON */
-
-.get-joke-btn {
-  width: 152px;
-  height: 42px;
+.search-box {
+  border: 2px solid #333;
   border-radius: 10px;
-  background: linear-gradient(91deg, #8ea7ff 0%, #7291ff 100%);
-  color: white;
-  cursor: pointer;
 }
 
-/* 
- FAVORITES OVERLAY
- */
-
-.favorites-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.favorites-overlay.active {
-  display: flex;
-}
-
-.favorites-window {
-  width: 100vw;
-  height: 100vh;
-  background: #f8f8f8;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.close-favorites {
-  font-size: 22px;
-  cursor: pointer;
-  float: right;
-}
-
-/*  TABLET ADAPTIVE
- */
-
-@media (min-width: 768px) {
-  .joke-card {
-    max-width: 100%;
-  }
-
-  .favorites-window {
-    width: 80vw;
-    height: 80vh;
-    border-radius: 12px;
-  }
-}
-
-/*  DESKTOP LAYOUT
- */
-
-@media (min-width: 1280px) {
-  main {
-    display: grid;
-    grid-template-columns: 2fr 1.1fr;
-    gap: 40px;
-    margin-top: 24px;
-  }
-
-  .favorites-overlay {
-    position: static;
-    height: auto;
-    background: transparent;
-    display: block;
-  }
-
-  .favorites-window {
-    width: 100%;
-    height: auto;
-    background: #f8f8f8;
-    border-radius: 12px;
-    padding: 20px;
-    overflow-y: visible;
-  }
-
-  .close-favorites {
-    display: none;
-  }
+.search-input {
+  padding: 10px;
 }
 
 .categories-list {
+  padding-top: 20px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -317,7 +132,6 @@ main {
   color: #333;
   font-family: Roboto;
   font-size: 12px;
-  font-style: normal;
   font-weight: 500;
   line-height: 16px;
   letter-spacing: 2px;
@@ -327,14 +141,69 @@ main {
 .category-label:hover {
   border-color: #d0d0d0;
 }
+
+.cards-of-joke-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px 0;
+}
+
+.joke-card {
+  width: 100%;
+  border-radius: 20px;
+  background: #f8f8f8;
+  position: relative;
+}
+
+.icon-like {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.icon-message {
+  position: absolute;
+  left: 20px;
+  top: 47px;
+}
+
+.icon-link {
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+}
+
+.id-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 47px 20px 5px 80px;
+  color: #ababab;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.card-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42;
+  padding: 0 20px 20px 80px;
+}
+
+.last-update-info-text {
+  font-size: 10px;
+  color: #ababab;
+  padding: 0 20px 20px 80px;
+}
+
 .category-badge {
-  display: inline-block;
-  margin: 0 20px 20px 80px;
-
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  margin-bottom: 20px;
   padding: 4px 16px;
-  border-radius: 12px;
+  border-radius: 6px;
   background: #fff;
-
   color: #333;
   font-family: Roboto;
   font-size: 10px;
@@ -342,4 +211,165 @@ main {
   line-height: 1.4;
   letter-spacing: 2px;
   text-transform: uppercase;
+}
+
+.get-joke-btn {
+  width: 152px;
+  height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(91deg, #8ea7ff 0%, #7291ff 100%);
+  color: #fff;
+  cursor: pointer;
+}
+
+.get-joke-btn:hover,
+.get-joke-btn:focus {
+  background: linear-gradient(91deg, #476bee 0%, #1841d2 100%);
+}
+
+.favorites-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 88px;
+}
+
+.favorites-overlay {
+  position: fixed;
+  inset: 0;
+  background: #f8f8f8;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.favorites-text {
+  display: none;
+}
+
+.favorites-overlay.active {
+  display: flex;
+}
+
+.favorites-window {
+  width: 100%;
+  height: 100vh;
+  background: #f8f8f8;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.favorites-list > .joke-card {
+  max-width: 340px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+}
+
+.close-favorites {
+  font-size: 22px;
+  cursor: pointer;
+  float: right;
+}
+
+@media (min-width: 768px) {
+  .fix-size-container {
+    padding: 0 25px;
+  }
+
+  .joke-card {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .favorites-overlay {
+    justify-content: flex-end;
+    align-items: stretch;
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  .favorites-window {
+    width: min(480px, 60vw);
+    height: 100vh;
+    border-radius: 0;
+    box-shadow: -12px 0 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .category-badge {
+    margin-right: 40px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .header-burger-cont {
+    color: #ababab;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .favorites-list {
+    margin-top: 20px;
+  }
+  .favorites-text {
+    display: block;
+    color: #ababab;
+    font-family: Roboto;
+    font-size: 20px;
+
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .header-burger-img {
+    display: none;
+  }
+
+  .fix-size-container {
+    max-width: 1120px;
+    padding: 0 40px;
+  }
+
+  .favorites-overlay {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+
+    background: transparent;
+    z-index: 20;
+
+    pointer-events: none;
+  }
+
+  .favorites-window {
+    width: min(420px, 40vw);
+    height: 100vh;
+    background: #f8f8f8;
+    padding: 20px;
+
+    overflow-y: auto;
+    border-radius: 12px 0 0 12px;
+
+    pointer-events: auto;
+  }
+
+  main {
+    padding-right: min(420px, 40vw);
+  }
+
+  .header-burger-cont,
+  .close-favorites {
+    display: none;
+  }
+  .category-badge {
+    margin-right: 40px;
+  }
 }

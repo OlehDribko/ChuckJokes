@@ -12,11 +12,26 @@ const favoritesList = document.querySelector(".favorites-list");
 
 const favoritesOverlay = document.querySelector(".favorites-overlay");
 const closeFavoritesBtn = document.querySelector(".close-favorites");
+const cardsList = document.querySelector(".cards-of-joke-list");
 
 export const URL = "https://api.chucknorris.io/jokes";
 
 const jokeButton = document.querySelector(".get-joke-btn");
 const favoriteWrapper = document.querySelector(".header-burger-cont");
+
+const desktopMQ = window.matchMedia("(min-width: 1280px)");
+
+if (desktopMQ.matches) {
+  const favorites = localStorageAbstraction.getItems(FAVORITE_KEY) || [];
+  renderFavoriteJokes(favorites);
+}
+
+desktopMQ.addEventListener("change", (e) => {
+  if (!e.matches) return;
+
+  const favorites = localStorageAbstraction.getItems(FAVORITE_KEY) || [];
+  renderFavoriteJokes(favorites);
+});
 
 jokeButton.addEventListener("click", async () => {
   const choice = getSelectedRadio();
@@ -65,4 +80,12 @@ favoriteWrapper.addEventListener("click", () => {
   closeFavoritesBtn.addEventListener("click", () => {
     favoritesOverlay.classList.remove("active");
   });
+});
+
+cardsList.addEventListener("click", (event) => {
+  const likeBtn = event.target.closest(".icon-like");
+  if (!likeBtn) return;
+
+  const updatedFavorites = localStorageAbstraction.getItems(FAVORITE_KEY) || [];
+  renderFavoriteJokes(updatedFavorites);
 });
